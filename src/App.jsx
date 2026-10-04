@@ -1,18 +1,17 @@
-import { useState } from "react";
-import ChildComponent from "./ChildComponent";
+import UsersInfo from "./UsersInfo";
 
 const App = ()=> {
-    const [text, setText] = useState("hello world");
-    const changeText = ()=> {
-        setText("سلام دنیا");
-    }
-       
+    const users = [
+        {name:"Leanne Graham", age:32, email:"Sincere@april.biz"},
+        {name:"Ervin Howell", age:26, email:"Shanna@melissa.tv"},
+        {name:"Patricia Lebsack", age:22, email:"Julianne.OConner@kory.org"},
+        {name:"Chelsey Dietrich", age:18, email:"Lucio_Hettinger@annie.ca"},
+    ];
     return (
         <div>
-            <button onClick={changeText}>Click me</button>
-            <ChildComponent text={text} >
-                welcome to this page
-            </ChildComponent>
+            {users.map((user) => (
+                <UsersInfo key={user.name} name={user.name} age={user.age} email={user.email}/>
+            ))}
         </div>
     )
 }
