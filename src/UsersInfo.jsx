@@ -1,15 +1,14 @@
-const UsersInfo = ({name, age, email}) => {
+const UsersInfo = ({name, age, email, handleDelete}) => {
+    
+
     return (
         <div>
             <ul>
+                <li>Name: {name}</li>
+                <li>Age:{age}</li>
+                <li>Email:{email}</li>
                 <li>
-                    <strong>Name:</strong> {name}
-                </li>
-                <li>
-                    <strong>Age:</strong> {age}
-                </li>
-                <li>
-                    <strong>Email:</strong> {email}
+                    <button onClick={handleDelete}>Delete</button>
                 </li>
             </ul>
         </div>
