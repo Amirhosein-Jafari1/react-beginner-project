@@ -1,7 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const UserComponent = () => {
   const [age, setAge] = useState(20);
+
+  useEffect (()=> {
+    //Mount
+    console.log("Send a request to the server");
+
+    return ()=> {
+        //UnMount
+        console.log("Hoping to meet you")
+    }
+  }, []);
+
+  useEffect (()=> {
+    console.log(age);
+    if (age === 30) {
+        //Updating
+        console.log("age is 30")
+    }
+  }, [age])
+
+
     return (
         <div>
             <h1>User Component</h1>
@@ -10,8 +30,8 @@ const UserComponent = () => {
             </button>
 
             <ul>
-                <li>name: Amir</li>
-                <li>age: {age}</li>
+                <li>Name: Amir</li>
+                <li>Age: {age}</li>
                 <li>Email: info@example.com</li>
             </ul>
         </div>

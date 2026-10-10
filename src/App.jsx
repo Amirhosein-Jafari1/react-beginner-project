@@ -7,7 +7,7 @@ const App = ()=> {
   return (
     <div>
         <button onClick={()=> setIsLogined(!isLogined)}>
-            {isLogined ? "Logout" : "Login"}
+          {isLogined ? "Logout" : "Login"}
         </button>
         {isLogined ? <UserComponent/> : <GuestComponent/>}
     </div>
