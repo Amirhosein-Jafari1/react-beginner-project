@@ -4,22 +4,27 @@ const UserComponent = () => {
   const [age, setAge] = useState(20);
 
   useEffect (()=> {
-    //Mount
     console.log("Send a request to the server");
 
+    const handleClick = ()=> {
+        console.log("Age is 20");
+    };
+
+    const element = document.getElementById("age");
+    element?.addEventListener("click", handleClick);
+
     return ()=> {
-        //UnMount
-        console.log("Hoping to meet you")
-    }
+        console.log("Hoping to meet you");
+        element?.removeEventListener("click", handleClick);
+    };
   }, []);
 
   useEffect (()=> {
     console.log(age);
     if (age === 30) {
-        //Updating
         console.log("age is 30")
     }
-  }, [age])
+  }, [age]);
 
 
     return (
