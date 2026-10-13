@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.app-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f6ffff;
+}
+
+.nav-bar {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px 0;
+    z-index: 10;
+}
+
+.toggle-btn {
+    background: linear-gradient(to right,#2121eb, #6767fd, #d71d1d, #e28080  );
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all ease 0.3s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+}
+
+.toggle-btn.login {
+    background: linear-gradient(to right, #2121eb, #6767fd);
+}
+
+.toggle-btn.logout {
+    background: linear-gradient(to right, #d71d1d, #e28080);
+}
+
+
+.app-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .nav-bar {
+        padding: 10px;
+    }
+
+    .toggle-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}

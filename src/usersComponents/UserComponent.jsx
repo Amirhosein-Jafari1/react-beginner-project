@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./UsersComponent.css"
 
 const UserComponent = () => {
   const [age, setAge] = useState(20);
@@ -22,21 +23,21 @@ const UserComponent = () => {
   useEffect (()=> {
     console.log(age);
     if (age === 30) {
-        console.log("age is 30")
+        console.log("age is 30");
     }
   }, [age]);
 
 
     return (
-        <div>
-            <h1>User Component</h1>
-            <button onClick={()=> setAge((prev) => prev + 1)}>
+        <div className="user-container">
+            <h1 className="user-title">User Component</h1>
+            <button className="user-btn" onClick={()=> setAge((prev) => prev + 1)}>
                 Change Age
             </button>
 
-            <ul>
+            <ul className="user-info">
                 <li>Name: Amir</li>
-                <li>Age: {age}</li>
+                <li className="user-age">Age: {age}</li>
                 <li>Email: info@example.com</li>
             </ul>
         </div>
