@@ -11,6 +11,7 @@ const App = ()=> {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        margin: '0',
         width: '100%',
         padding: '15px 20px',
         borderRadius: '0 0 10px 10px',
