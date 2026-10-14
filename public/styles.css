@@ -14,15 +14,6 @@ body {
     background-color: #f6ffff;
 }
 
-.nav-bar {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 0;
-    z-index: 10;
-}
-
 .toggle-btn {
     background: linear-gradient(to right,#2121eb, #6767fd, #d71d1d, #e28080  );
     color: white;
