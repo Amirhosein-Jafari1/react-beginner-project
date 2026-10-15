@@ -1,62 +1,32 @@
 import { useState } from "react"
-import UserComponent from "./usersComponents/UserComponent";
-import GuestComponent from "./guestComponents/GuestComponent";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "react-bootstrap";
 
-const App = ()=> {
-  const [isLogined, setIsLogined] = useState(false);
+
+function App() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = ()=> setShow(false);
+  const handleShow = ()=> setShow(true);
+
   return (
-    <div className="app-container">
-      
-      <header style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        margin: '0',
-        width: '100%',
-        padding: '15px 20px',
-        borderRadius: '0 0 10px 10px',
-        background: 'linear-gradient(to right, #38ceb0, #1fd9e0)',
-        zIndex: '20',
-        position: 'sticky',
-        top: '0',
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: '18px',
-      }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px'
-        }}>
-          <div style={{
-            width: '10px',
-            height: '10px',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'white',
-            color: '#1ac6cc',
-            padding: '10px'
-          }}>
-            R
-          </div>
-          <span>React App {new Date().getFullYear()}</span>
-        </div>
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        باز کردن مودال
+      </Button>
 
-        <button 
-          className={`toggle-btn ${isLogined ? "logout" : "login"}`}
-          onClick={()=> setIsLogined(!isLogined)}>
-            {isLogined ? "Logout" : "Login"}
-        </button>
-      </header>
-      
-      
-      <div className="app-content">
-        {isLogined ? <UserComponent/> : <GuestComponent/>}
-      </div>
-    </div>
-  )
+      <Modal show={show} onHide={handleClose}>
+        <ModalHeader closeButton>
+          <ModalTitle>عنوان مودال</ModalTitle>
+        </ModalHeader>
+        <ModalBody>سلام! این یک موداله با React-Bootstrap 🤩</ModalBody>
+        <ModalFooter>
+          <Button variant="danger" onClick={handleClose}>
+            بستن
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  ) 
 }
 
 export default App
