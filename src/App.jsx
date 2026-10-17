@@ -23,7 +23,7 @@ const App = () => {
         <div className="bg-indigo-800/40 backdrop-blur-md rounded-lg p-10 mb-8 border border-white/10 ">
           <div className="relative">
             <span className="block text-8xl font-bold text-white transition-all duration-300 transform"
-                  style={{ textShadow: '0 4px 18px rgba(0,0,0,0.4' }}>
+                  style={{ textShadow: '0 4px 18px rgba(0,0,0,0.4)' }}>
               {count}
             </span>
             {count !== 0 && (
@@ -52,6 +52,13 @@ const App = () => {
             بازنشانی
         </button>
       </div>
+
+      {/* Notification Box */}
+      {notification && (
+        <div className="fixed bottom-4 right-4 bg-blue-400 shadow-lg px-4 py-2 text-white rounded-lg transition-all animate-bounce">
+          {notification}
+        </div>
+      )}
 
 
     </div>
