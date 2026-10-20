@@ -1,35 +1,62 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  let countvalue = useRef(0);
+  const [inputValue, setInputValue] = useState("");
 
-  const handleClick = () => {
-    countvalue.current += 2;
-    setCount(countvalue.current + 1);
-  }
+  const inputRef = useRef(null);
 
-  
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-linear-to-r from-teal-700 via-cyan-700 to-emerald-500 ">
-      <div className="p-8 bg-white shadow-lg rounded-xl flex flex-col items-center space-y-6!">
-        <h2 className="text-3xl font-bold text-gray-800 ">Counter App</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-linear-to-br from-orange-600 via-orange-800 to-rose-700 p-4">
+      <div className="w-full max-w-md p-8 bg-white rounded-xl space-y-6!">
+        <h2 className="text-3xl font-bold text-center">فرم ورودی</h2>
 
-        <div className=" w-36 h-36 rounded-full flex items-center justify-center bg-linear-to-r from-purple-600 to-pink-600 shadow-lg">
-          <span className="text-5xl text-white font-bold">{count}</span>
+        <div className="relative">
+          <input
+            ref={inputRef}
+            id="my-input"
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            className="w-full px-4 py-3 text-center text-lg border-2 border-rose-300 rounded focus:ring-4 focus:ring-rose-200 focus:border-rose-500 outline-none transition duration-300 bg-gray-50"
+            placeholder="متن خود را وارد کنید..." 
+          />
+
+           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <svg className="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd"></path>
+            </svg>
+          </div>  
+        </div>  
+
+        {inputValue && (
+          <div className="mt-4 p-4 bg-teal-50 rounded border border-teal-200">
+            <p className="text-teal-800 text-center">متن وارد شده: <span className="font-bold">{inputValue}</span></p>
+          </div>
+        )}
+
+        <div className="flex justify-center space-x-4 space-x-reverse rtl gap-4">
+          <button 
+            className="px-6 py-2 bg-rose-600 text-white font-medium rounded shadow-md hover:bg-rose-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-rose-500"
+            onClick={() => setInputValue("")}
+          >
+              پاک کردن
+            </button>
+          <button 
+            className="px-6 py-2 bg-teal-600 text-white font-medium rounded shadow-md hover:bg-teal-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+          >
+              ارسال
+            </button>
         </div>
-
-        <button
-          onClick={handleClick} 
-          className="px-6 py-3 rounded-lg! bg-teal-400 font-bold outline-none transform hover:scale-105 transition-all duration-500">
-          increase
-        </button>
-
-        <p className="text-gray-600 text-center">Click to increase the counter value</p>
-      </div>
+      </div>      
     </div>
   )
 }
+
 
 
 
