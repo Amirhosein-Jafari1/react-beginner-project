@@ -1,6 +1,7 @@
 import Users from "./Users";
 import Posts from "./Posts";
 import { NavLink, Route, Routes } from "react-router";
+import AddUser from "./AddUser";
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
           <div className="flex justify-center mb-8 gap-4">
             <NavLink
               to={"/users"}
-              className={({ isActive}) => `px-4 py-2 rounded-2 ${isActive
+              className={({ isActive}) => `px-4 py-2 rounded-2 no-underline! ${isActive
                 ? "bg-indigo-600 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
@@ -21,7 +22,7 @@ const App = () => {
             </NavLink>
             <NavLink
               to={"/posts"}
-              className={({ isActive}) => `px-4 py-2 rounded-2 ${isActive
+              className={({ isActive}) => `px-4 py-2 rounded-2 no-underline! ${isActive
                 ? "bg-indigo-600 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
               }`}
@@ -32,7 +33,9 @@ const App = () => {
 
           <div className="bg-gray-50 rounded p-4">
               <Routes>
-                <Route path="/users" element={<Users/>}></Route>
+                <Route path="/users" element={<Users/>}>
+                  <Route path="/users/add-user" element={<AddUser/>}></Route>
+                </Route>
                 <Route path="/posts" element={<Posts/>}></Route>
               </Routes>
           </div>
