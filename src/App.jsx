@@ -3,6 +3,7 @@ import Posts from "./Posts";
 import { NavLink, Route, Routes } from "react-router";
 import AddUser from "./AddUser";
 import UserList from "./UserList";
+import UserDetails from "./UserDetails";
 
 const App = () => {
   return (
@@ -35,8 +36,9 @@ const App = () => {
           <div className="bg-gray-50 rounded p-4">
               <Routes>
                 <Route path="/users" element={<Users/>}>
-                  <Route path="/users/add-user" element={<AddUser/>}></Route>
-                  <Route path="/users/user-list" element={<UserList/>}></Route>
+                  <Route path="add-user" element={<AddUser/>}></Route>
+                  <Route path="user-list" element={<UserList/>}></Route>
+                  <Route path="user-details/:userId" element={<UserDetails/>}></Route>
                 </Route>
                 <Route path="/posts" element={<Posts/>}></Route>
               </Routes>
