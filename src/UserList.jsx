@@ -6,7 +6,8 @@ const UserList = () => {
     
         if (loading) return <div className="flex items-center justify-center min-h-50"><span className="text-blue-400 text-lg font-medium">در حال دریافت اطلاعات...</span></div>
         if (error) return <div className="bg-red-50 text-red-600 p-4 rounded-lg text-center">خطا: {error}</div>
-    
+
+        console.log(data);
 
     return (
         <div className="flex flex-col">
@@ -15,7 +16,7 @@ const UserList = () => {
             {data.map((user) => (
                 <li key={user.id} className="p-4 hover:bg-blue-50 transition-colors duration-150">
                 <Link 
-                  to={`/users/user-details/${user.id}`}
+                  to={`/users/user-details/${user.id}`} state={{user}}
                   className="flex flex-col sm:flex-row sm:items-center justify-between">
                     <div className="flex items-center space-x-3! space-x-reverse">
                     <div className="w-10 h-10 rounded-full bg-linear-to-r from-purple-600 to-pink-500 flex items-center justify-center text-white font-bold">

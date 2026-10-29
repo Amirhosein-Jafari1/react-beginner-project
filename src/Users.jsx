@@ -8,13 +8,13 @@ const Users = () => {
         </div>
         <div className="flex items-center justify-center gap-4 p-4">
           <Link
-            to={"/users/add-user"}
+            to={"add-user"}
             className="px-4 py-2 rounded no-underline! bg-emerald-500 text-white hover:scale-105 transition-transform duration-300"      
           >
               افزودن کاربر
           </Link>
           <Link
-            to={"/users/user-list"}
+            to={"user-list"}
             className="px-4 py-2 rounded no-underline! bg-cyan-600 text-white hover:scale-105 transition-transform duration-300"      
           >
               لیست کاربران

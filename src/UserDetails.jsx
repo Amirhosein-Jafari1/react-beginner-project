@@ -1,58 +1,18 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useLocation } from "react-router";
 
 const UserDetails = () => {
-    const {userId} = useParams();
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        setLoading(true);
-        fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
-          .then((res) => {
-            if(!res.ok) throw new Error("خطا در دریافت اطلاعات کاربر");
-            return res.json();
-          })
-          .then((data) => {
-            setUser(data);
-            setLoading(false);
-          })
-          .catch((err) => {
-            setError(err.message);
-            setLoading(false);
-          });
-    }, [userId]);
+    const location = useLocation();
+    const {user: selectedUser} = location.state;
 
-    if (loading) 
-      return (
-        <div className="flex items-center justify-center min-h-75">
-            <span className="text-blue-600 text-lg font-medium">
-                در حال دریافت اطلاعات کاربر...
-            </span>
-        </div>
-    );
-
-    if (error) 
-      return(
-        <div className="bg-red-50 text-red-600 p-4 rounded lg text-center">
-            خطا: {error}
-            <Link
-              to={"/users/user-list"}
-              className="block mt-4 text-blue-600 hover:underline">
-                بازگشت به لیست کاربران
-            </Link>
-        </div>
-    );
-
-    if(!user) return null;
+    if(!selectedUser) return null;
 
     // استخراج حروف اول نام و نام خانوادگی برای نمایش در آواتار
-    const initials = user.name
+    const initials = selectedUser.name
     .split(' ')
     .map(part => part[0])
     .join('')
-    .toUpperCase()
+    .toUpperCase();
 
     return (
         <div className="fixed w-full h-screen top-0 left-0 bg-black/50 z-20 flex items-center justify-center">
@@ -62,8 +22,8 @@ const UserDetails = () => {
                         <span className="text-white text-3xl font-bold">{initials}</span>
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800!">{user.name}</h2>
-                        <p className="text-gray-600!">{user.company.name}</p>
+                        <h2 className="text-2xl font-bold text-gray-800!">{selectedUser.name}</h2>
+                        <p className="text-gray-600!">{selectedUser.company.name}</p>
                     </div>
                 </div>
 
@@ -72,19 +32,19 @@ const UserDetails = () => {
                     <div className="grid grid-cols-1 gap-3">
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">نام کاربری: </span>
-                            <span className="font-medium">{user.name}</span>
+                            <span className="font-medium">{selectedUser.name}</span>
                         </div>
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">ایمیل: </span>
-                            <span className="font-medium">{user.email}</span>
+                            <span className="font-medium">{selectedUser.email}</span>
                         </div>
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">تلفن:</span>
-                            <span className="font-medium">{user.phone}</span>
+                            <span className="font-medium">{selectedUser.phone}</span>
                         </div>
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">وبسایت:</span>
-                            <span className="font-medium">{user.website}</span>
+                            <span className="font-medium">{selectedUser.website}</span>
                         </div>
                     </div>
                 </div>
@@ -94,15 +54,15 @@ const UserDetails = () => {
                     <div className="grid grid-cols-1 gap-3">
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">خیابان:</span>
-                            <span className="font-medium">{user.address.street}</span>
+                            <span className="font-medium">{selectedUser.address.street}</span>
                         </div>
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">شهر: </span>
-                            <span className="font-medium">{user.address.city}</span>
+                            <span className="font-medium">{selectedUser.address.city}</span>
                         </div>
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">کدپستی:</span>
-                            <span className="font-medium">{user.address.zipcode}</span>
+                            <span className="font-medium">{selectedUser.address.zipcode}</span>
                         </div>
                     </div>
                 </div>
@@ -112,11 +72,11 @@ const UserDetails = () => {
                     <div className="grid grid-cols-1 gap-3">
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">نام:</span>
-                            <span className="font-medium">{user.company.name}</span>
+                            <span className="font-medium">{selectedUser.company.name}</span>
                         </div>
                         <div className="flex items-center">
                             <span className="w-24 text-gray-600">شماره: </span>
-                            <span className="font-medium">{user.company.catchPhrase}</span>
+                            <span className="font-medium">{selectedUser.company.catchPhrase}</span>
                         </div>
                     </div>
                 </div>
