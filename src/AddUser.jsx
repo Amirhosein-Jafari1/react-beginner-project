@@ -1,6 +1,8 @@
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 const AddUser = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="fixed w-full! h-screen left-0 top-0 z-20 bg-black/50 flex justify-center items-center">
             <div className="bg-white w-1/3 py-5 rounded-2xl shadow ">
@@ -18,11 +20,11 @@ const AddUser = () => {
                 </form>
 
                 <div className="flex justify-end px-10">
-                    <Link 
-                        to={"/users"}
+                    <button 
+                        onClick={()=> navigate(-1)}
                         className="px-4 py-2 bg-gray-500 text-white rounded no-underline!">
                         بازگشت
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

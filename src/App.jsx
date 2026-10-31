@@ -1,13 +1,24 @@
 import Users from "./Users";
 import Posts from "./Posts";
-import { NavLink, Route, Routes } from "react-router";
+import { Navigate, NavLink, Route, Routes, useNavigate } from "react-router";
 import AddUser from "./AddUser";
 import UserList from "./UserList";
 import UserDetails from "./UserDetails";
 
 const App = () => {
+  const gotoUsersPage = true;
+
+  const navigate = useNavigate();
+
+  const handleSomeAction = ()=> {
+    // Do something ......
+    navigate("/users", {state: {testParams: "123"}});
+  }
+
+
   return (
-    <div className="min-h-screen bg-gradiant-to-r from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-linear-to-r from-blue-500! to-indigo-700!">
+      {gotoUsersPage ? <Navigate to={"users"}/> : null}
       <div className="max-w-4xl mx-auto bg-white rounded shadow-md overflow-hidden">
         <div className="p-6">
           <h1 className="text-3xl font-bold text-center text-indigo-800! italic">React App</h1>
@@ -34,6 +45,10 @@ const App = () => {
           </div>
 
           <div className="bg-gray-50 rounded p-4">
+            <h1 className="text-center">سلام دوستان</h1>
+            <button onClick={handleSomeAction} className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded mt-2 transition-colors duration-150">
+               انجام عملیات و ریدایرکت
+            </button>
               <Routes>
                 <Route path="/users" element={<Users/>}>
                   <Route path="add-user" element={<AddUser/>}></Route>
