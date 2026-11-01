@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: tanha;
+    src: url("./assets/fonts/Tanha.woff");
+}
+
+*{
+    font-family: tanha;
+}
+
 a {
     text-decoration: none  !important;
 }

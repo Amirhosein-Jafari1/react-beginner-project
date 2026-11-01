@@ -4,7 +4,7 @@ const Users = () => {
     return (
       <div className="max-w-3xl mx-auto p-6">
         <div className="flex items-center justify-center animate-bounce">
-          <h2 className="text-2xl font-bold"> به صفحه کاربران خوش آمدید</h2>
+          <h2 className="text-2xl font-bold">صفحه کاربران</h2>
         </div>
         <div className="flex items-center justify-center gap-4 p-4">
           <Link
