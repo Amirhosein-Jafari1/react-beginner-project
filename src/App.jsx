@@ -1,20 +1,15 @@
-import { useState } from "react";
-import ChildComponent from "./ChildComponent";
-import Counter from "./Counter";
+import Content from "./layout/content";
+import Header from "./layout/header";
+import Sidebar from "./layout/sidebar";
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  console.log("App component rendered");
-  
   return (
-    <div className="grid place-items-center gap-4 p-4">
-      <ChildComponent/>
-      <Counter count={count} setCount={setCount} />
+    <div>
+      <Content />
+      <Header />
+      <Sidebar />
     </div>
   );
 };
 
-
-
-
-export default App
+export default App;

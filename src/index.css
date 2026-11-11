@@ -1,14 +1,12 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: tanha;
-    src: url("./assets/fonts/Tanha.woff");
+  font-family: vazir;
+  src: url("./assets/fonts/Vazir.ttf") format("woff");
 }
 
 *{
-    font-family: tanha;
-}
-
-a {
-    text-decoration: none  !important;
+  font-family: vazir;
+  direction: rtl;
+  text-align: right;
 }
