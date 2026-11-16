@@ -12,3 +12,9 @@
   direction: rtl;
   text-align: right;
 }
+
+@layer base {
+  button {
+    @apply cursor-pointer;
+  }
+}
