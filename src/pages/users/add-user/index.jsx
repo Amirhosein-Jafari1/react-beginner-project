@@ -1,11 +1,19 @@
 import { useState } from "react"
+import { createUserService, updateUserService } from "../../../services/users";
+import { useLocation, useNavigate } from "react-router";
+
 
 export default function AddUserPage() {
+    const navigate = useNavigate()
+
+    const location = useLocation();
+    const userToEdit = location.state?.user
+
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        website: ''
+        name: userToEdit?.name || '',
+        email: userToEdit?.email || '',
+        phone: userToEdit?.phone || '',
+        website: userToEdit?.website || ''
     });
 
     const handleChange = (e) => {
@@ -16,18 +24,21 @@ export default function AddUserPage() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Form submited", formData);
-        // Here you would typically send the data to on API
-        alert('User added successfully!');
-        // Clear form
-        setFormData({ name: '', email: '', phone: '', website: ''});
-    }
+        const res = userToEdit ? await updateUserService(formData, userToEdit.id) : await createUserService(formData);
+        if(res.status === 201 || res.status === 200) {
+            // Here you would typically send the data to on API
+            alert('عملیات موفقیت آمیز بود!' + res.data.id);
+            // Clear form
+            setFormData({ name: '', email: '', phone: '', website: ''});
+            navigate(-1)
+        };
+    };
 
     return(
         <div className="max-w-2xl mx-auto p-6">
-            <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">افزودن کاربر</h1>
+            <h1 className="text-3xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">{userToEdit ? 'ویرایش کاربر' : 'افزودن کاربر'}</h1>
 
             <form 
                 onSubmit={handleSubmit}
@@ -88,9 +99,9 @@ export default function AddUserPage() {
                 <div className="flex justify-center">
                     <button
                         type="submit"
-                        className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-400 dark:hover:bg-blue-500 transition-colors duration-300 rounded-lg text-white font-medium px-8! py-3 shadow-md "
+                        className="bg-blue-600 hover:bg-blue-700 transition-colors duration-300 rounded-lg text-white font-medium px-8! py-3 shadow-md "
                     >
-                        ثبت
+                       {userToEdit ? 'ویرایش' : 'ثبت'}
                     </button>
                 </div>
             </form>

@@ -24,9 +24,9 @@ export const updateUserService = (data,id) => {
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         },
-    })
+    });
 }
 
 export const deleteUserService = (id) => {
-    return axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+    return axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
 }

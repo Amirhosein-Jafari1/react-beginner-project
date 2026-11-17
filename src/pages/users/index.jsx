@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUsersService } from "../../services/users";
+import { deleteUserService, getUsersService } from "../../services/users";
 import { FaUserPlus } from "react-icons/fa";
 import UsersTable from "./_components/UsersTable" ;
 import { Link } from "react-router";
@@ -18,7 +18,15 @@ export default function UsersPage() {
 
     useEffect(() => {
         handleGetUsers();
-    }, [])
+    }, []);
+
+    const handleDelete = async (id) => {
+        const res = await deleteUserService(id);
+        if(res.status === 200){
+          alert('عملیات با موفقیت انجام شد!');
+          setUsers(users.filter( user => user.id !== id));
+        }
+    }
 
 
     return(
@@ -31,7 +39,7 @@ export default function UsersPage() {
                 </Link>
             </div>
 
-            <UsersTable users={users} />
+            <UsersTable users={users} handleDelete={handleDelete}/>
         </div>
     );
 }
