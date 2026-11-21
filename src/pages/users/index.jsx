@@ -3,19 +3,28 @@ import { deleteUserService, getUsersService } from "../../services/users";
 import { FaUserPlus } from "react-icons/fa";
 import UsersTable from "./_components/UsersTable" ;
 import { Link } from "react-router";
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
 
 export default function UsersPage() {
     const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     
     const handleGetUsers = async () => {
+        setLoading(true);
+        setError(null);
         try {
             const data = await getUsersService();
             setUsers(data || []);
         } catch (error) {
             console.log(error);
+            setError("دریافت اطلاعات با مشکل مواجه شد!");
+        } finally {
+            setLoading(false);
         }
     }
-
+    
     useEffect(() => {
         handleGetUsers();
     }, []);
@@ -28,6 +37,9 @@ export default function UsersPage() {
         }
     }
 
+    if(error) {
+        return <ErrorMessage message={error} onRetry={handleGetUsers}/>
+    }
 
     return(
         <div className="space-y-4">
@@ -39,7 +51,8 @@ export default function UsersPage() {
                 </Link>
             </div>
 
-            <UsersTable users={users} handleDelete={handleDelete}/>
+            {loading ? <Loading/> : <UsersTable users={users} handleDelete={handleDelete}/> }
+            
         </div>
     );
 }

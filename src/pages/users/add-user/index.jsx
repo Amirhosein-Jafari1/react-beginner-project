@@ -4,10 +4,10 @@ import { useLocation, useNavigate } from "react-router";
 
 
 export default function AddUserPage() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const location = useLocation();
-    const userToEdit = location.state?.user
+    const userToEdit = location.state?.user;
 
     const [formData, setFormData] = useState({
         name: userToEdit?.name || '',
@@ -32,7 +32,7 @@ export default function AddUserPage() {
             alert('عملیات موفقیت آمیز بود!' + res.data.id);
             // Clear form
             setFormData({ name: '', email: '', phone: '', website: ''});
-            navigate(-1)
+            navigate(-1);
         };
     };
 
